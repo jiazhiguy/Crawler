@@ -49,12 +49,13 @@ func main() {
 	
 	fmt.Println("num of movies:",len(*movies))
 	fmt.Println("cost time:",time.Since(t))
+	fmt.Printf("%+v",(*movies)[1:25])
 
 }
 func GetFromEl(e *colly.HTMLElement,el string,storage *[]Movie){
 	e.ForEach("li",func(_ int, el *colly.HTMLElement){
 		movie :=Movie{}
-		name :=el.ChildText("div.item>div.info>div.bd>p:nth-of-type(1)")
+		name :=el.ChildText("div.item>div.info>div.hd>a[href]>span")
 		star :=el.ChildText("div.item>div.info>div.bd>div.star>span:nth-of-type(2)")
 		evaluation :=el.ChildText("div.item>div.info>div.bd>div.star>span:nth-of-type(4)")
 		actor :=el.ChildText("div.item>div.info>div.bd>p:nth-of-type(1)")
